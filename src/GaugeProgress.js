@@ -77,6 +77,10 @@ export default class GaugeProgress extends React.Component {
             (360 * 99.9) / 100 - cropDegree
         );
 
+        const borderWidth = capWidth > width ? capWidth : width;
+        const radius = (widthSize - borderWidth) / 2;
+        const center = widthSize / 2;
+
         const fill = this.extractFill(this.props.fill);
         const circlePath = this.circlePath(
             widthSize / 2,
