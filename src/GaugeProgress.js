@@ -54,7 +54,8 @@ export default class GaugeProgress extends React.Component {
 
     render() {
         const {
-            size,
+            heightSize,
+            widthSize,
             width,
             tintColor,
             backgroundColor,
@@ -69,18 +70,18 @@ export default class GaugeProgress extends React.Component {
             circleRadian
         } = this.props;
         const backgroundPath = this.circlePath(
-            size / 2,
-            size / 2,
-            size / 2 - width / 2,
+            widthSize / 2,
+            heightSize / 2,
+            widthSize / 2 - width / 2,
             0,
             (360 * 99.9) / 100 - cropDegree
         );
 
         const fill = this.extractFill(this.props.fill);
         const circlePath = this.circlePath(
-            size / 2,
-            size / 2,
-            size / 2 - width / 2,
+            widthSize / 2,
+            heightSize / 2,
+            widthSize / 2 - width / 2,
             0,
             (((360 * 99.9) / 100 - cropDegree) * fill) / 100
         );
@@ -92,11 +93,11 @@ export default class GaugeProgress extends React.Component {
         return (
             <View style={style}>
                 {!!show && (
-                    <Surface width={size} height={size}>
+                    <Surface width={widthSize} height={heightSize}>
                         <Group
                             rotation={rotation + cropDegree / 2}
-                            originX={size / 2}
-                            originY={size / 2}
+                            originX={widthSize / 2}
+                            originY={heightSize / 2}
                         >
                             <Shape
                                 d={backgroundPath}
@@ -134,7 +135,8 @@ export default class GaugeProgress extends React.Component {
 
 GaugeProgress.propTypes = {
     style: ViewPropTypes.style,
-    size: PropTypes.number.isRequired,
+    heightSize: PropTypes.number.isRequired,
+    widthSize: PropTypes.number.isRequired,
     fill: PropTypes.number.isRequired,
     width: PropTypes.number.isRequired,
     tintColor: PropTypes.string,
