@@ -66,7 +66,8 @@ export default class GaugeProgress extends React.Component {
             rotation,
             cropDegree,
             children,
-            circleRadian
+            circleRadian,
+            offset
         } = this.props;
         const backgroundPath = this.circlePath(
             size / 2,
@@ -77,8 +78,8 @@ export default class GaugeProgress extends React.Component {
         );
 
         const borderWidth = capWidth > width ? capWidth : width;
-        const radius = (widthSize - borderWidth) / 2;
-        const center = widthSize / 2;
+        const radius = (size - borderWidth) / 2;
+        const center = size / 2;
 
         const fill = this.extractFill(this.props.fill);
         const circlePath = this.circlePath(
@@ -91,12 +92,12 @@ export default class GaugeProgress extends React.Component {
         const { show } = this.state;
 
         const radian = (Math.PI * circleRadian * fill) / (50 * 360);
-        const capX = radius * Math.cos(radian) + center;
+        const capX = radius * Math.cos(radian) + center - offset;
         const capY = radius * Math.sin(radian) + center;
         return (
             <View style={style}>
                 {!!show && (
-                    <Surface width={size} height={size}>
+                    <Surface width={size + offset} height={size + offset}>
                         <Group
                             rotation={rotation + cropDegree / 2}
                             originX={size / 2}
@@ -146,6 +147,7 @@ GaugeProgress.propTypes = {
     strokeCap: PropTypes.string,
     backgroundColor: PropTypes.string,
     rotation: PropTypes.number,
+    offset: PropTypes.number,
     cropDegree: PropTypes.number,
     capColor: PropTypes.string,
     capWidth: PropTypes.number,
@@ -165,5 +167,6 @@ GaugeProgress.defaultProps = {
     strokeCap: "butt",
     capColor: "black",
     capWidth: 0,
-    circleRadian: 360
+    circleRadian: 360,
+    offset: 0
 };
