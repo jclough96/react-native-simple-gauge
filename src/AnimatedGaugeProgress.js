@@ -30,7 +30,7 @@ export default class AnimatedGaugeProgress extends React.Component {
     }
 
     animateFill() {
-        const { tension, friction, onAnimationComplete, prefill } = this.props;
+        const { damping, stiffness, onAnimationComplete, prefill } = this.props;
 
         var chartFillAnimation = new Animated.Value(prefill || 0);
         this.setState({ chartFillAnimation });
