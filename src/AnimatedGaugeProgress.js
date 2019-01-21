@@ -30,22 +30,16 @@ export default class AnimatedGaugeProgress extends React.Component {
     }
 
     animateFill() {
-        const {
-            tension,
-            friction,
-            speed,
-            onAnimationComplete,
-            prefill
-        } = this.props;
+        const { tension, friction, onAnimationComplete, prefill } = this.props;
 
         var chartFillAnimation = new Animated.Value(prefill || 0);
         this.setState({ chartFillAnimation });
 
         Animated.spring(chartFillAnimation, {
             toValue: this.props.fill,
-            tension,
-            friction,
-            speed
+            damping,
+            stiffness,
+            mass
         }).start(onAnimationComplete);
     }
 
@@ -66,13 +60,14 @@ AnimatedGaugeProgress.propTypes = {
     width: PropTypes.number.isRequired,
     tintColor: PropTypes.string,
     backgroundColor: PropTypes.string,
-    tension: PropTypes.number,
-    friction: PropTypes.number,
+    mass: PropTypes.number,
+    stiffness: PropTypes.number,
+    damping: PropTypes.number,
     onAnimationComplete: PropTypes.func,
     onLinearAnimationComplete: PropTypes.func
 };
 
 AnimatedGaugeProgress.defaultProps = {
-    tension: 7,
-    friction: 10
+    damping: 7,
+    stiffness: 10
 };
