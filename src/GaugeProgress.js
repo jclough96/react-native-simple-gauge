@@ -1,14 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { View, Platform, ViewPropTypes, AppState } from "react-native";
-import {
-    Surface,
-    Shape,
-    Path,
-    Group
-} from "../../react-native/Libraries/ART/ReactNativeART";
-import MetricsPath from "art/metrics/path";
+import { View, Platform, ViewPropTypes, AppState, ART } from "react-native";
 const ActiveState = "active";
+
+const { Surface, Shape, Path, Group } = ART;
 
 export default class GaugeProgress extends React.Component {
     state = {
