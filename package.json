@@ -35,7 +35,7 @@
   "homepage": "https://github.com/nerdyfactory/react-native-simple-gauge",
   "dependencies": {
     "art": "^0.10.2",
-    "react-art": "0.15.1"
+    "react-art": "^16.8.6"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
