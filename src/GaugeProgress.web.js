@@ -1,11 +1,9 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { View, Platform, ViewPropTypes, AppState } from "react-native";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { View, Platform, ViewPropTypes, AppState } from 'react-native';
+import { Surface, Shape, Path, Group } from 'react-art';
 
-const ART = require('react-art');
-const ActiveState = "active";
-	
-const { Surface, Shape, Path, Group } = ART;
+const ActiveState = 'active';
 
 export default class GaugeProgress extends React.Component {
   state = {
@@ -13,11 +11,11 @@ export default class GaugeProgress extends React.Component {
   };
 
   componentDidMount() {
-    AppState.addEventListener("change", this._handleAppStateChange);
+    AppState.addEventListener('change', this._handleAppStateChange);
   }
 
   componentWillUnmount() {
-    AppState.removeEventListener("change", this._handleAppStateChange);
+    AppState.removeEventListener('change', this._handleAppStateChange);
   }
 
   _handleAppStateChange = nextAppState => {
@@ -25,7 +23,7 @@ export default class GaugeProgress extends React.Component {
   };
 
   circlePath(cx, cy, r, startDegree, endDegree) {
-    let p = Path();
+    const p = Path();
     p.path.push(0, cx + r, cy);
     p.path.push(
       4,
@@ -42,7 +40,7 @@ export default class GaugeProgress extends React.Component {
   extractFill(fill) {
     if (fill < 0.01) {
       return 0;
-    } else if (fill > 100) {
+    } if (fill > 100) {
       return 100;
     }
 
@@ -122,7 +120,7 @@ export default class GaugeProgress extends React.Component {
             </Group>
           </Surface>
         )}
-        {typeof children === "function" ? children(fill) : children}
+        {typeof children === 'function' ? children(fill) : children}
       </View>
     );
   }
@@ -151,12 +149,12 @@ GaugeProgress.propTypes = {
 };
 
 GaugeProgress.defaultProps = {
-  tintColor: "black",
-  backgroundColor: "#e4e4e4",
+  tintColor: 'black',
+  backgroundColor: '#e4e4e4',
   rotation: 90,
   cropDegree: 90,
-  strokeCap: "butt",
-  capColor: "black",
+  strokeCap: 'butt',
+  capColor: 'black',
   capWidth: 0,
   circleRadian: 360,
   offset: 0
