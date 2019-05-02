@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { ViewPropTypes } from "react-native";
+import "./innerCss.css"
 
 export default class AnimatedGaugeProgress extends React.Component {
 	state = {};
@@ -69,7 +70,7 @@ export default class AnimatedGaugeProgress extends React.Component {
 						this.props.size / 2,
 						this.props.size / 2 - this.props.width / 2,
 						0,
-						(360 * 99.9) / 100 - this.props.cropDegree
+						180
 					)}
 				/>
 				<path
@@ -85,9 +86,7 @@ export default class AnimatedGaugeProgress extends React.Component {
 						this.props.size / 2,
 						this.props.size / 2 - this.props.width / 2,
 						0,
-						(((360 * 99.9) / 100 - this.props.cropDegree) *
-							this.props.fill) /
-							100
+						(180 * this.props.fill) / 100
 					)}
 				/>
 				<circle
