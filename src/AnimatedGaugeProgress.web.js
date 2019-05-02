@@ -1,10 +1,31 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ViewPropTypes } from "react-native";
-import "./innerCss.css"
+import { ViewPropTypes } from 'react-native';
+import './innerCss.css';
 
 export default class AnimatedGaugeProgress extends React.Component {
 	state = {};
+
+	componentDidMount() {
+		let styleSheet = document.styleSheets[0];
+
+		let animationName = `animation${Math.round(Math.random() * 100)}`;
+
+		let keyframes = `@-webkit-keyframes ${animationName} {
+            from {
+                stroke-dashoffset: -${(this.props.fill * 180) / 100};
+            }
+            to {
+                stroke-dashoffset: 0;
+            }
+        }`;
+
+		styleSheet.insertRule(keyframes, styleSheet.cssRules.length);
+
+		this.setState({
+			animationName: animationName
+		});
+	}
 
 	polarToCartesian = (centerX, centerY, radius, angleInDegrees) => {
 		var angleInRadians = ((angleInDegrees - 180) * Math.PI) / 180;
@@ -54,6 +75,18 @@ export default class AnimatedGaugeProgress extends React.Component {
 		const namespacedSVG = `<animateMotion fill="freeze" dur="${
 			this.props.speed
 		}s" repeatCount="forwards" keyPoints="1;0" keyTimes="0;1" rotate="auto" calcMode="linear"><mpath xlink:href="#arc2"/></animateMotion>`;
+
+		let style = {
+			animationName: this.state.animationName,
+			animationDuration: `${this.props.speed}s`,
+			animationDelay: '0.0s',
+			animationIterationCount: 1,
+			animationDirection: 'normal',
+			animationFillMode: 'forwards',
+			strokeDasharray: 90,
+			strokeDashoffset: -((this.props.fill * 180) / 100)
+		};
+
 		return (
 			<svg
 				width={this.props.size + this.props.offset + 5}
@@ -74,7 +107,7 @@ export default class AnimatedGaugeProgress extends React.Component {
 					)}
 				/>
 				<path
-					className="path"
+					style={style}
 					id="arc2"
 					fill="none"
 					stroke={this.props.tintColor}
