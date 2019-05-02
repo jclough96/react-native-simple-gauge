@@ -1,29 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { ViewPropTypes } from "react-native";
 
 export default class AnimatedGaugeProgress extends React.Component {
-	state = {
-		chartFillAnimation: new Animated.Value(this.props.prefill || 0)
-	};
-
-	componentDidMount() {
-		this.animateFill();
-		AppState.addEventListener('change', this._handleAppStateChange);
-	}
-
-	componentWillUnmount() {
-		AppState.removeEventListener('change', this._handleAppStateChange);
-	}
-
-	_handleAppStateChange = nextAppState => {
-		if (nextAppState === ActiveState) this.animateFill();
-	};
-
-	componentDidUpdate(prevProps) {
-		if (prevProps.fill !== this.props.fill) {
-			this.animateFill();
-		}
-	}
+	state = {};
 
 	polarToCartesian = (centerX, centerY, radius, angleInDegrees) => {
 		var angleInRadians = ((angleInDegrees - 180) * Math.PI) / 180;
