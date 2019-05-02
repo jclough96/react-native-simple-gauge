@@ -1,0 +1,23 @@
+body {
+  background: #fff;
+}
+svg {
+  height: 1000px;
+  width: 1000px;
+  position:absolute;
+}
+
+.path {
+  stroke-dasharray: 90;
+  stroke-dashoffset: -90;
+  animation: dash 1s forwards;
+}
+
+@keyframes dash {
+  from {
+    stroke-dashoffset: -90;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
