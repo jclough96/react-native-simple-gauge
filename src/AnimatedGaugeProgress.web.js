@@ -9,9 +9,9 @@ export default class AnimatedGaugeProgress extends React.Component {
 	componentDidMount() {
 		let styleSheet = document.styleSheets[0];
 
-		let animationName = `animation${Math.round(Math.random() * 100)}`;
+		let animationName = `dash`;
 
-		let keyframes = `@-webkit-keyframes ${animationName} {
+		let keyframes = `keyframes ${animationName} {
             from {
                 stroke-dashoffset: -${(this.props.fill * 180) / 100};
             }
@@ -80,8 +80,6 @@ export default class AnimatedGaugeProgress extends React.Component {
 			animationName: this.state.animationName,
 			animationDuration: `${this.props.speed}s`,
 			animationDelay: '0.0s',
-			animationIterationCount: 1,
-			animationDirection: 'normal',
 			animationFillMode: 'forwards',
 			strokeDasharray: 90,
 			strokeDashoffset: -((this.props.fill * 180) / 100)
