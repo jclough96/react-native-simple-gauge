@@ -33,7 +33,7 @@ export default class AnimatedGaugeProgress extends React.Component {
 	// };
 
 	animate(time) {
-		console.log(this.props.fill);
+		// console.log(this.props.fill);
 		const endpoint = this.props.fill;
 		if (
 			endpoint <= this.state.arcAnimationProgress ||
@@ -82,7 +82,7 @@ export default class AnimatedGaugeProgress extends React.Component {
 			end.y
 		].join(' ');
 
-		console.log(d);
+		// console.log(d);
 		return { d, x: start.x, y: start.y };
 	};
 
@@ -94,7 +94,7 @@ export default class AnimatedGaugeProgress extends React.Component {
 			0,
 			180
 		);
-		console.log(d);
+		// console.log(d);
 		return d.d;
 	};
 
@@ -134,7 +134,7 @@ export default class AnimatedGaugeProgress extends React.Component {
 	};
 
 	render() {
-		console.log(this.state.arcAnimationProgress);
+		// console.log(this.state.arcAnimationProgress);
 		const namespacedSVG = `<animateMotion fill="freeze" dur="${
 			this.props.speed
 		}s" repeatCount="forwards" keyPoints="1;0" keyTimes="0;1" rotate="auto" calcMode="linear"><mpath xlink:href="#arc2"/></animateMotion>`;
