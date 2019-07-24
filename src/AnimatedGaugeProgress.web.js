@@ -31,6 +31,13 @@ export default class AnimatedGaugeProgress extends React.Component {
 
 	// 	window.requestAnimationFrame(this.update);
 	// };
+	
+	componentDidUpdate(prevProps) {
+	    if (prevProps.fill !== this.props.fill) {
+	      this.setState({ arcAnimationProgress: 0 });
+	      requestAnimationFrame(this.animate);
+	    }
+	  }
 
 	animate(time) {
 		// console.log(this.props.fill);
